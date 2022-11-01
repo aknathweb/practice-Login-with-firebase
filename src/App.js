@@ -5,6 +5,7 @@ import Signup from './Login/Signup/Signup';
 import Thirdparty from './Login/Thirdparty/Thirdparty';
 import './App.css';
 import Updateuser from './Login/Updateuser/Updateuser';
+import UpdatePassword from './Login/UpdatePassword/UpdatePassword';
 
 function App() {
   const { user, UserLogOutFB } = useContext(AuthContext);
@@ -15,7 +16,7 @@ function App() {
     <div className='login'>
       {/* profile info start */}
       <div className="profile">
-        {user?.uid ? <><img src={user?.photoURL} alt="" />
+        {user?.uid ? <><img src={(user?.photoURL)} alt="" />
           <strong>Name:{user?.displayName}</strong>
           <strong>eamil:{user?.email}</strong>
           <strong>verified:{user?.emailVerified ? 'True' : 'False'}</strong>
@@ -29,6 +30,7 @@ function App() {
       <div className='sign-in-up'>
         <div ><Signup></Signup></div>
         {user?.uid ? <div><Updateuser></Updateuser></div> : ''}
+        {user?.uid ? <div><UpdatePassword></UpdatePassword></div> : ''}
         <div > <Signin></Signin></div>
       </div>
       {/* Login with email end */}
