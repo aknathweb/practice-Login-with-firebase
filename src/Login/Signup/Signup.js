@@ -1,23 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/ContextProvider';
+import userDefaultImage from './user.png';
 
 const Signup = () => {
     const [errorMessage, setErrormessage] = useState('');
     const { CreateNewUserFB, UpdateUserProfileFB } = useContext(AuthContext);
     const handleSignup = (e) => {
         e.preventDefault();
-        const name = e.target.name.value;
-        const imageURL = e.target.imageURL.value;
+        const name = e.target.name.value || 'Anonymous';
+        const imageURL = e.target.imageURL.value || userDefaultImage;
         const email = e.target.email.value;
         const password = e.target.password.value;
         CreateNewUserFB(email, password)
             .then(result => {
+                e.target.reset();
+                setErrormessage('');
                 UpdateUserProfileFB(name, imageURL)
                     .then(() => { })
                     .catch(e => console.log(e));
             })
-            .catch(e => setErrormessage(e.message.toLocaleUpperCase().slice(22, -2).split('-').join(' ')));
-
+            .catch(e => setErrormessage(e.message.toLocaleUpperCase().replaceAll(/FIREBASE:|AUTH|[/:.]|ERROR|/g, '').replaceAll(/[-]/g, ' ')));
     }
     return (
         <div>

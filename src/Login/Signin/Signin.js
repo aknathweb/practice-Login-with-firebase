@@ -10,14 +10,16 @@ const Signin = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const check = e.target.check.checked;
-        console.log(check);
         if (check) {
             VerificationUserEmailFB()
                 .then(() => { })
                 .catch(e => console.log(e));
         }
         UserLoginFB(email, password)
-            .then((result) => { })
+            .then((result) => {
+                e.target.reset();
+                setErrormessage('');
+            })
             .catch(e => setErrormessage(e.message.toLocaleUpperCase().slice(22, -2).split('-').join(' ')));
     }
     return (

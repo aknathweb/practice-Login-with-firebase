@@ -14,6 +14,7 @@ function App() {
   }
   return (
     <div className='login'>
+      <h2 style={{ 'textAlign': 'center' }}>User Profile part</h2>
       {/* profile info start */}
       <div className="profile">
         {user?.uid ? <><img src={(user?.photoURL)} alt="" />
@@ -24,8 +25,11 @@ function App() {
           <strong>Last visit:{user?.metadata.lastSignInTime}</strong></> : ''}
 
         {user?.uid ? <button onClick={handleLogOut}>Log Out</button> : <button >Log In</button>}
+
       </div>
+
       {/* profile info end */}
+      <h2 style={{ 'textAlign': 'center' }}>User Login with Email</h2>
       {/* Login with email start */}
       <div className='sign-in-up'>
         <div ><Signup></Signup></div>
@@ -37,6 +41,7 @@ function App() {
       <br />
 
       {/* Login with third party start */}
+      <h2 style={{ 'textAlign': 'center' }}>User Login With Third Party</h2>
       <div className="third-party">
         <Thirdparty></Thirdparty>
       </div>

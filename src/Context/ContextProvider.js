@@ -60,6 +60,9 @@ const ContextProvider = ({ children }) => {
         return sendEmailVerification(auth.currentUser)
     }
     /////////////////////// verification Email ////////////////
+    //////////////////////Re-authenticate/////////////////////
+
+    //////////////////////Re-authenticate////////////////////
     const AuthInfo = {
         loading
         , user

@@ -5,10 +5,8 @@ const Updateuser = () => {
     const { user, UpdateUserProfileFB } = useContext(AuthContext)
     const handleUpdateUser = (e) => {
         e.preventDefault();
-        const name = e.target.name.value;
-        const imageURL = e.target.imageURL.value;
-        // const email = e.target.email.value;
-        // const password = e.target.password.value;
+        const name = e.target.name.value || user?.displayName;
+        const imageURL = e.target.imageURL.value || user?.photoURL;
         UpdateUserProfileFB(name, imageURL)
             .then(() => { })
             .catch(e => console.log(e));
@@ -22,8 +20,6 @@ const Updateuser = () => {
                 <input type="text" name='imageURL' placeholder={user?.photoURL} />
                 <br />
                 <input type="email" name="email" placeholder={user.email} disabled />
-                <br />
-                {/* <input type="password" name="password" placeholder="password" /> */}
                 <br />
                 <input type="submit" name="submit" placeholder="submit" />
             </form>
