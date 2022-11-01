@@ -1,10 +1,15 @@
-import React from 'react';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/ContextProvider';
 
 const Thirdparty = () => {
+    const { LoginWithPopup } = useContext(AuthContext);
+    const GoogleProvider = new GoogleAuthProvider();
+    const GithubProvider = new GithubAuthProvider();
     return (
         <div>
-            <button>Google</button>
-            <button>GitHub</button>
+            <button onClick={() => LoginWithPopup(GoogleProvider)}>Google</button>
+            <button onClick={() => LoginWithPopup(GithubProvider)}>GitHub</button>
         </div>
     );
 };
